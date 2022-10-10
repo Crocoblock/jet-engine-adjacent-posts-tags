@@ -58,8 +58,6 @@ class JE_Adjacent_Post_Prev_URL extends \Elementor\Core\DynamicTags\Data_Tag {
 			$tax_slug = 'category';
 		}
 
-		var_dump( $tax_slug );
-
 		$adjacent_post = get_adjacent_post( $in_same_term, '', $this->is_prev_post(), $tax_slug );
 
 		if ( ! $adjacent_post ) {
