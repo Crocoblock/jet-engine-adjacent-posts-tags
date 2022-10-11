@@ -41,7 +41,7 @@ class JE_Adjacent_Post_Prev_ID_Macros extends Jet_Engine_Base_Macros {
 		$property     = ! empty( $args['property'] ) ? $args['property'] : '';
 		$in_same_term = false;
 
-		if ( 0 == $tax_slug ) {
+		if ( '0' === $tax_slug ) {
 			$tax_slug = false;
 		}
 
