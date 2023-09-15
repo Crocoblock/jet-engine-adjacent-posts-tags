@@ -18,6 +18,27 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'JE_ADJACENT_POST_TAGS_PATH', plugin_dir_path( __FILE__ ) );
 
+add_action( 'jet-engine/init', function() {
+
+	require_once JE_ADJACENT_POST_TAGS_PATH . 'traits/get-adjacent-post.php';
+
+	require_once JE_ADJACENT_POST_TAGS_PATH . 'context/prev-post.php';
+	require_once JE_ADJACENT_POST_TAGS_PATH . 'context/next-post.php';
+
+	new JE_Adjacent_Post_Prev_Context();
+	new JE_Adjacent_Post_Next_Context();
+} );
+
+add_action( 'jet-engine/modules/dynamic-visibility/conditions/register', function( $conditions_manager ) {
+
+	require JE_ADJACENT_POST_TAGS_PATH . 'conditions/has-prev-post.php';
+	require JE_ADJACENT_POST_TAGS_PATH . 'conditions/has-next-post.php';
+
+	$conditions_manager->register_condition( new JE_Adjacent_Post_Has_Prev() );
+	$conditions_manager->register_condition( new JE_Adjacent_Post_Has_Next() );
+
+} );
+
 add_action( 'jet-engine/elementor-views/dynamic-tags/register', function( $tags_module ) {
 
 	require_once JE_ADJACENT_POST_TAGS_PATH . 'tags/prev-post-link.php';
@@ -25,10 +46,10 @@ add_action( 'jet-engine/elementor-views/dynamic-tags/register', function( $tags_
 	require_once JE_ADJACENT_POST_TAGS_PATH . 'tags/prev-post-title.php';
 	require_once JE_ADJACENT_POST_TAGS_PATH . 'tags/next-post-title.php';
 
-	$tags_module->register_tag( new JE_Adjacent_Post_Prev_URL() );
-	$tags_module->register_tag( new JE_Adjacent_Post_Next_URL() );
-	$tags_module->register_tag( new JE_Adjacent_Post_Prev_Title() );
-	$tags_module->register_tag( new JE_Adjacent_Post_Next_Title() );
+	$tags_module->register( new JE_Adjacent_Post_Prev_URL() );
+	$tags_module->register( new JE_Adjacent_Post_Next_URL() );
+	$tags_module->register( new JE_Adjacent_Post_Prev_Title() );
+	$tags_module->register( new JE_Adjacent_Post_Next_Title() );
 
 } );
 
