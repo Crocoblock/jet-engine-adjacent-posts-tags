@@ -1,3 +1,5 @@
+# Adjacent Posts Tools for JetEngine
+
 This plugins provides full set of functionality (hope so) to work with Adjacent Posts (Previous and Next posts) in JetEngine. Here is a full list and short description of this functionality
 
 ## Elementor Dynamic Tags
